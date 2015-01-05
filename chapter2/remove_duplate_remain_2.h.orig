@@ -1,0 +1,33 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  remove_duplate_remain_2.h
+ *
+ *    Description:  
+ *
+ *        Version:  1.0
+ *        Created:  01/05/15 13:25:08
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  YOUR NAME (), 
+ *   Organization:  
+ *
+ * =====================================================================================
+ */
+
+#include <iostream>
+
+using namespace std;
+
+int RemoveDuplates(int array[], const int& size) {
+		if(size <= 2)
+				    return size;
+			int count = 2;
+			    for(int i = 2; i < size; i ++) {
+				    	    if(array[i] != array[count - 2])
+						    	        array[count ++] = array[i];
+					        }
+			        return count;
+}
+
