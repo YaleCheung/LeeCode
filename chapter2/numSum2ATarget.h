@@ -26,7 +26,7 @@ void findMinMaxValue(int *array, const int& size, int* max, int* min) {
 }
 
 void twoSum(int* array, const int& size, const int& target, int* p_index1, int* p_index2) {
-	// store in to hash array;
+    // store in to hash array;
     int min, max;
     
     findMinMaxValue(array, size, &max, &min);
