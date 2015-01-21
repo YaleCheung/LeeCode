@@ -22,36 +22,51 @@
 #include <string>
 using namespace std;
 
-#include <iostream>
-#include <stack>
-using namespace std;
 class Solution {
 public:
     bool isValid(string s) {
         stack<char> cache;
         for(auto i = 0; i < s.size(); i ++) {
+            cout << i << endl;
             switch (s[i]) {
             case '(':
             case '[':
             case '{':
+            {
                 cache.push(s[i]);
                 break;
+            }
             case ')' :
             {
-                if((cache.size() > 0) && (i < (s.size() - 1)) && (']' == s[i + 1]))
+                if((cache.size() > 0) && (i < (s.size() - 1)) && (']' == s[i + 1]) && ('[' == cache.top())) {
+
                     return false;
+                }
                 if((cache.size() > 0) && ('(' == cache.top())) {
                     cache.pop();
                     break;
+                } else {
+                    return false;
                 }
+
             }
             case ']' :
             {
                 if ((cache.size() > 0) && ('(' == cache.top()))
                     return false;
-                if ((cache.size() > 0) && ('[' == cache.top()))
+                if ((cache.size() > 0) && ('[' == cache.top())) {
                     cache.pop();
-                break;
+                    break;
+                } else
+                    return false;
+            }
+            case '}':
+            {
+                if((cache.size() > 0) && ('{' == cache.top())) {
+                    cache.pop();
+                    break;
+                } else
+                    return false;
             }
             default:
                 ;
@@ -61,10 +76,8 @@ public:
     }
 };
 
-
-
 int main (int argc, char* argv[]) {
     Solution s;
-    cout << s.isValid("()[]") << endl;
+    cout << s.isValid("[({(())}[()])]") << endl;
     return 0;
 }

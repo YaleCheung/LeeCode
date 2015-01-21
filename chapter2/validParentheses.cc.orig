@@ -12,8 +12,8 @@
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  YOUR NAME (), 
- *   Organization:  
+ *         Author:  YOUR NAME (),
+ *   Organization:
  *
  * =====================================================================================
  */
@@ -25,46 +25,63 @@ using namespace std;
 #include <iostream>
 #include <stack>
 using namespace std;
+
 class Solution {
-	public:
-		    	bool isValid(string s) {
-						stack<char> cache;
-								for(auto i = 0; i < s.size(); i ++) {
-											      switch (s[i]) {
-												      				case '(':
-																					case '[':
-																					case '{':
-																						cache.push(s[i]);
-																											break;
-																															case ')' :
-																															{
-																																					if((cache.size() > 0) && (i < (s.size() - 1)) && (']' == s[i + 1]))
-																																												return false;
-																																										if((cache.size() > 0) && ('(' == cache.top())) {
-																																																	cache.pop();
-																																																							break;
-																																																												}
-																																														}
-																																			case ']' :
-																																			{
-																																									if ((cache.size() > 0) && ('(' == cache.top()))
-																																																return false;
-																																														if ((cache.size() > 0) && ('[' == cache.top()))
-																																																					cache.pop();
-																																																			break;	
-																																																							}
-																																					      		default:
-																																								;
-																																											}
-											      		}
-										return cache.size() ? false : true;
-											}		     
+    public:
+            bool isValid(string s) {
+                        stack<char> cache;
+                                for(auto i = 0; i < s.size(); i ++) {
+                                                cout << i << endl;
+                                                              switch (s[i]) {
+                                                                                case '(':
+                                                                                                    case '[':
+                                                                                                    case '{':
+                                                                                                    {
+                                                                                                                            cache.push(s[i]);
+                                                                                                                                                break;
+                                                                                                                                                                }
+                                                                                                                    case ')' :
+                                                                                                                    {
+                                                                                                                                            if((cache.size() > 0) && (i < (s.size() - 1)) && (']' == s[i + 1]) && ('[' == cache.top())) {
+                                                                                                                                                                        
+                                                                                                                                                                        return false;
+                                                                                                                                                                                            }
+                                                                                                                                                                if((cache.size() > 0) && ('(' == cache.top())) {
+                                                                                                                                                                                            cache.pop();
+                                                                                                                                                                                                                    break;
+                                                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                                                                                    return false;
+                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                        
+                                                                                                                                                                                }
+                                                                                                                                    case ']' :
+                                                                                                                                    {
+                                                                                                                                                            if ((cache.size() > 0) && ('(' == cache.top()))
+                                                                                                                                                                                        return false;
+                                                                                                                                                                                if ((cache.size() > 0) && ('[' == cache.top())) {
+                                                                                                                                                                                                            cache.pop();
+                                                                                                                                                                                                                                    break;      
+                                                                                                                                                                                                                                                        } else  
+                                                                                                                                                                                                                                                                                    return false;
+                                                                                                                                                                                                                                                                        }
+                                                                                                                                                    case '}':
+                                                                                                                                                    {
+                                                                                                                                                                            if((cache.size() > 0) && ('{' == cache.top())) {
+                                                                                                                                                                                                        cache.pop();
+                                                                                                                                                                                                                                break;
+                                                                                                                                                                                                                                                    } else 
+                                                                                                                                                                                                                                                                                return false;
+                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                        default:
+                                                                                                                                                                        ;
+                                                                                                                                                                                    }
+                                                                    }
+                                        return cache.size() ? false : true;
+                                            }   
 };
 
-
-
 int main (int argc, char* argv[]) {
-		Solution s;
-			cout << s.isValid("()[]") << endl;
-				return 0;
+    Solution s;
+    cout << s.isValid("[({(())}[()])]") << endl;
+    return 0;
 }
