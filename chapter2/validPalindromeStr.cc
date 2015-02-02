@@ -21,7 +21,7 @@ public:
         		++ pre;
         	}
         	while (pre < suf) {
-        		if((pre < suf) && ((s[suf ]>= 'A' && s[suf] <= 'Z') || (s[pre] >='0' && s[pre] <='9')))
+        		if((pre < suf) && ((s[suf ]>= 'A' && s[suf] <= 'Z') || (s[suf] >='0' && s[suf] <='9')))
         			break;
         		-- suf;
         	}
