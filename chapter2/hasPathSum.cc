@@ -17,7 +17,6 @@ public:
         TreeNode* p = root;
         TreeNode* last_visit = NULL;
         int s_sum = 0;
-
         while(p || ! s.empty()) {
             while(p) {
                 s_sum += p->val;
