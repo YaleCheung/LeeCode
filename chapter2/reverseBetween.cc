@@ -15,56 +15,55 @@ Given:
 struct ListNode {
     int val;
     ListNode* next;
-    ListNode(int x) :
-	    val (x), next(NULL);
+    ListNode(int x) : val (x), next(NULL) {};
 };
 
 class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int m, int n) {
         // Judge the bondary;
-	if (nullptr == head || 
-		m < 0 || n < 0 || 
-		m <= n) {
+        if (nullptr == head ||
+                m < 0 || 
+                m > n) {
+            // infact, the result should be wrong, not nullptr
             return nullptr;
-	}
-	ListNode* pre = head;
-	// Find the position m;
-	int i = 0;
-	while (pre && i < m - 2) {
+        }
+        ListNode* pre = head;
+        // Find the position m;
+        int i = 0;
+        while (pre && i < m - 2) {
             pre = pre -> next;
-	    ++ i;
-	}
-	// pre is the m-1 th node;
-	Node* break_point = pre;
-	Node* cur = pre -> next;
-	Node* first = cur;
-	Node* last = nullptr;
-	++ i;
-	if (nullptr == pre || nullptr == cur)
+            ++ i;
+        }
+        // pre is the m-1 th node;
+        Node* break_point = pre;
+        Node* cur = pre -> next;
+        Node* first = cur;
+        Node* last = nullptr;
+        ++ i;
+        if (nullptr == pre || (nullptr == cur && m != n))
             return nullptr;
-	pre = pre -> next;
-	cur = pre -> next;
-	++ i;
+        pre = pre -> next;
+        cur = pre -> next;
+        ++ i;
         while (cur && i < n) {
-	    if (i == n - 1)
+            if (i == n - 1)
                 last = cur;
             ListNode* next = cur -> next; // the next;
             cur -> next = pre;
-	    pre = cur;
-	    cur = next;
-	    ++ i;
-                
-	}
-	if (i < n) {
+            pre = cur;
+            cur = next;
+            ++ i;
+        }
+        if (i < n) {
             break_point->next = last;
-	    first_point->next = cur;
-	} else
-            return nullptr; 
-	
-	if (0 != m)
+            first_point->next = cur;
+        } else
+            return nullptr;
+
+        if (0 != m)
             return head;
-	else
+        else
             return last;
     }
 };
