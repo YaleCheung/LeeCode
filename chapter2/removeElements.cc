@@ -17,15 +17,23 @@
  *    ListNode(int x) : val(x), next(NULL) {}
  * };
  **/
+#include <iostream>
+using namespace std;
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+
 class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
-        if (nullptr == head)
-            return null;
+        if (NULL == head)
+            return NULL;
         ListNode* pre = NULL;
 	ListNode* cur = head;
-	while (cur != nullptr) {
-             while(cur->val != val && NULL != cur) {
+	while (cur != NULL) {
+             while(NULL != cur && cur->val != val) {
                  pre = cur;
                  cur = cur->next;
 	     }
@@ -33,7 +41,7 @@ public:
                  break;
 	     // find the val
 	     // case 1: first node is tobe deleted
-	     else if (pre == head) {
+	     else if (cur == head) {
                  cur = cur->next;
                  head = cur;
 	     } else {// case 2: in middle
@@ -44,3 +52,10 @@ public:
         return head;
     }
 };
+int main(int argc, char* argv[]) {
+    ListNode* tree = new ListNode(1);
+    Solution s;
+    s.removeElements(tree, 2);
+    delete tree;
+    return 0;
+}
