@@ -1,0 +1,27 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  computeArea.cc
+ *
+ *    Description:  
+ *
+ *        Version:  1.0
+ *        Created:  06/12/2015 05:38:30 PM
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  YOUR NAME (), 
+ *   Organization:  
+ *
+ * =====================================================================================
+ */
+class Solution
+{
+public:
+  int computeArea (int A, int B, int C, int D, int E, int F, int G, int H)
+  {
+    int width = max (min (C, G) - max (A, E), 0);
+    int height = max (min (D, H) - max (B, F), 0);
+      return (C - A) * (D - B) + (G - E) * (H - F) - width * height;
+  }
+};
