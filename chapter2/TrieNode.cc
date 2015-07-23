@@ -58,38 +58,54 @@ public:
             }
             p = p->sons[word[i] - 'a'];
         }
-        p->sons[word[length - 1] - 'a']->terminal = true;
+        p->terminal = true;
     }
 
     bool search(string word) {
         TrieNode* p = root;
-        int length = word.size() - 1;
+        int length = word.size();
         if (length <= 0)
             return false;
         for(int i = 0; i < length; ++ i) {
             if ((p->sons[word[i] - 'a']) == NULL)
                 return false;
+            p = p->sons[word[i] - 'a'];
         }
-        if ((p->sons[word[length - 1] - 'a']->terminal) == true)
+        if ((p->terminal) == true)
             return true;
         return false;
     }
 
     bool startsWith(string prefix) {
         TrieNode* p = root;
-        int length = prefix.size() - 1;
+        int length = prefix.size();
         if (length <= 0)
             return false;
         for(int i = 0; i < length; ++ i) {
             if ((p->sons[prefix[i] - 'a']) == NULL)
                 return false;
+            p = p->sons[prefix[i] - 'a'];
         }
-        for(int i = 0; i < ALPHANUM; ++ i) {
-            if ((p->sons[prefix[length - 1] - 'a'])->sons[i] != NULL)
+        return true;
+        /*for(int i = 0; i < ALPHANUM; ++ i) {
+            if (p->terminal == false || (p->sons[i] != NULL))
                 return true;
         }
         return false;
+        */
     }
 };
 
 
+int main(int argc, char* arvg[]) {
+    Trie trie;
+    trie.insert("a");
+    trie.insert("ab");
+    trie.insert("ba");
+    cout << trie.startsWith("a") << endl;
+    cout << trie.startsWith("ab") << endl;
+    cout << trie.startsWith("b") << endl;
+    cout << trie.startsWith(" ") << endl;
+
+    return 0;
+}
