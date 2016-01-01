@@ -6,45 +6,34 @@
 using namespace std;
 
 class Solution {
-    void lower(string& str) {
-        for(auto &ch : str)
-            ch = tolower(ch);
-    }
-public:
-    bool isIsomorphic(string s, string t) {
-        // make two string into lower string;
-        lower(s);
-	lower(t);
-	int size = s.size();
-	char table[26]={0};
-        for(int i = 0; i < 26; ++i)
-            table[i] = -1;
-        for(int i = 0; i < size; ++ i) {
-            char chl = s.at(i);
-	    char chr = t.at(i);
-	    int posl = chl - 'a';
-	    int posr = chr - 'a';
-            if (-1 == table[posl] && -1 == table[posr]) {
-                table[posl] = chr;
-		table[posr] = chl;
-	    } else {
-                if (table[posl] != -1 )
-                if(table[posl] == -1 && table[posr] != chl)
-                    return false;
-		if(table[posr] == -1 && table[posl] != chr)
-		    return false; 
-	    }
-	}
-	return true;
-    }
+        void _lower(string& str) {
+                    for(auto &ch : str)
+                                    ch = tolower(ch);
+                        }
+    public:
+            bool isIsomorphic(string s, string t) {
+                        _lower(s);
+                                _lower(t);
+                                        int size = s.size();
+                                                char tableA[128];
+                                                        for(int i = 0; i < 128; ++ i)
+                                                                        tableA[i] = -1;
+                                                                bool tableMap[128];
+                                                                        for(int i = 0; i < 128; ++ i)
+                                                                                        tableMap[i] = false;
+                                                                                for(int i = 0; i < size; ++ i) {
+                                                                                                char chl = s.at(i);
+                                                                                                            char chr = t.at(i);
+                                                                                                                        int posl = chl - 0;
+                                                                                                                                    int posr = chr - 0;
+                                                                                                                                                if (tableA[posl] == -1) {
+                                                                                                                                                                    if (tableMap[chr - 0] == false) {
+                                                                                                                                                                                            tableA[posl] = chr;
+                                                                                                                                                                                                                tableMap[chr - 0] = true;
+                                                                                                                                                                                                                                } else return false;
+                                                                                                                                                                                } else if (tableA[posl] != chr) 
+                                                                                                                                                                                                    return false;
+                                                                                                                                                                                        }
+                                                                                        return true;
+                                                                                            }
 };
-
-int main(int argc, char* argv[]) {
-    Solution s;
-    cout << s.isIsomorphic("ab", "aa") << endl;
-    cout << s.isIsomorphic("foo", "add") << endl;
-    cout << s.isIsomorphic("paper", "title") << endl;
-    cout << s.isIsomorphic("egg", "add") << endl;
-    
-    return 0;
-}
