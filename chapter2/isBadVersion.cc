@@ -43,11 +43,16 @@ class Solution {
 		    end = middle - 1;
 		else
 		    return middle;
-	    } else if (!isBadVersion(middle)) {
+	    } else {
+	        begin = middle + 1; 
+	    } 
+	    // solution bellow compares too many times.
+	    /*  else if (!isBadVersion(middle)) {
 		if (middle <= n - 1 && isBadVersion(middle + 1))
 		    return middle + 1;
 		else
 		    begin = middle + 1;
+	    */
 	    }
 	}
 	return begin;
