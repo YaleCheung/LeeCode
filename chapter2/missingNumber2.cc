@@ -24,8 +24,10 @@ public:
     int missingNumber(vector<int>& nums) {
         int size = nums.size();
 	int ret = 0;
-	for(int i = 0; i < size; ++ i)
-            ret ^= nums[i] ^ i;
-	return (ret == 0) ? size : ret;
+	for(auto& num : nums)
+	    ret ^= num;
+	for(auto i = 1; i < size; ++ i)
+	    ret ^= i;
+	return ret;
     }
 };
