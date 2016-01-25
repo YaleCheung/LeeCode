@@ -40,8 +40,8 @@ public:
 	cout << "denumerator " << denominator << endl;
 
 	double ret = double(numerator) / denominator;
-	cout << "ret " << ret << endl;
-	int intRet = int(ret);
+	cout << "ret " << double(ret) << endl;
+	int intRet = int(ret + 0.5);
 	cout << "intRet " << intRet << endl;
 	double diff = ret - intRet;
 	cout << "diff " << abs(diff) << endl;
