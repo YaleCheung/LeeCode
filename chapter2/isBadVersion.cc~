@@ -1,0 +1,47 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  isBadVersion.cc
+ *
+ *    Description:  
+ *
+ *        Version:  1.0
+ *        Created:  01/05/16 05:27:52
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  YOUR NAME (), 
+ *   Organization:  
+ *
+ * =====================================================================================
+ */
+bool isBadVersion (int version);
+class Solution
+{
+public:
+  int firstBadVersion (int n)
+  {
+    int begin = 1;
+    int end = n;
+    while (begin < end)
+      {
+	int middle = (begin + end) / 2;
+	if (isBadVersion (middle))
+	  {
+	    if (middle > 1 && isBadVersion (middle - 1))
+	      end = middle - 1;
+	    else
+	      return middle;
+	  }
+	else if (!isBadVersion (middle))
+	  {
+	    if (middle <= n - 1 && isBadVersion (middle + 1))
+	      return middle + 1;
+	    else
+	      begin = middle + 1;
+	  }
+      }
+    return begin;
+  }
+};
+

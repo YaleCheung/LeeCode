@@ -1,0 +1,41 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  missingNumber.cc
+ *
+ *    Description:  
+ *
+ *        Version:  1.0
+ *        Created:  01/05/16 08:09:17
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  YOUR NAME (), 
+ *   Organization:  
+ *
+ * =====================================================================================
+ */
+
+class Solution {
+   int _sum(const int &n) {
+	return (n * (n + 1)) / 2;
+  } public:
+    int missingNumber(vector < int >&nums) {
+	int max = 0;
+	int sum = 0;
+	int min = 0x7fffffff;
+      for (auto & elem:nums) {
+	    if (elem > max) {
+		max = elem;
+	    }
+	    if (elem < min)
+		min = elem;
+	    sum += elem;
+	}
+	int reminder = _sum(max) - sum;
+	if (reminder == 0 && min == 0)
+	    return max + 1;
+	else
+	    return reminder;
+    }
+};
