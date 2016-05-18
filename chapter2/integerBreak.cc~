@@ -1,0 +1,31 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  integerBreak.cc
+ *
+ *    Description:  
+ *
+ *        Version:  1.0
+ *        Created:  05/18/16 06:53:20
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  YOUR NAME (), 
+ *   Organization:  
+ *
+ * =====================================================================================
+ */
+ass Solution {
+	public:
+		    int integerBreak(int n) {
+			            int k = n / 3;
+				            int ret = 1;
+					            for(int i = 0; i < k; ++ i) {
+							                ret *= 3;
+									        }
+						            int reminder = n % 3;
+							            if (0 == reminder) return ret;
+								            if (reminder == 2) return ret * 2;
+									            if (reminder == 1) return ret;
+										        }
+};
