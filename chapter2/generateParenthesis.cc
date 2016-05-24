@@ -47,7 +47,7 @@ public:
 
 int main(int argc, char* argv[]) {
     Solution s;
-    vector<string> ret = s.generateParenthesis(2);
+    vector<string> ret = s.generateParenthesis(200);
     for(auto s : ret) {
         cout << s << endl;
     }
