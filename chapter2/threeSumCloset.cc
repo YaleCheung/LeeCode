@@ -33,23 +33,31 @@ public:
 	if (size < 3)
             return -1;
 	int abs_closet = 0x7fffffff;
+	int closet_sum = 0;
 	//int closet = 0x7fffffff;
 	sort(nums.begin(), nums.end());
-	for(int i = 0; i < size - 2;) {
-             for(int j = 0, k = size - 1; j < k;) {
-                 int abs_left = abs(target - nums[i] - nums[j] - nums[k]);
-		 if (abs_left == 0) return 0;
-                 else if (abs_left < abs_closet)
-                     abs_closet = abs_left;
+	//for(auto val : nums) {
+         //   cout << val << " " ;
+	//}
+	cout << endl;
+	for(int i = 0; i < size - 2; ++ i) {
+             for(int j = i + 1; j < size - 1; ++ j) {
+		 for (int k = j + 1; k < size; ++ k) {
+		     int sum = nums[i] + nums[j] + nums[k];
+		     int abs_left = abs(target - sum);
+		     if (abs_left == 0) return target;
+		     else if (abs_left < abs_closet) {
+			 abs_closet = abs_left;
+			 closet_sum = sum;
+		     }
+		     //cout << i << " " << j << " " << k << endl; 
+		     while(nums[k] == nums[k + 1]) ++ k;
+		 }
 		 while(nums[j] == nums[j + 1]) ++ j;
-		 while(nums[k] == nums[k - 1]) -- k;
-		 ++ j;
-		 -- k;
 	     }
 	     while(nums[i + 1] == nums[i]) ++ i;
-	     ++ i;
 	}
-	return abs_closet;
+	return closet_sum;
     }
 };
 
