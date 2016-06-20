@@ -28,24 +28,38 @@
  * =====================================================================================
  */
 
-#include <iostream>
-#include <string>
-using namespace std;
-struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-
-class Solutionc {
-public:
-    vector<string> binaryTreePaths(TreeNode* root) {
-        // pre order traverse.
-        string s1 = "";
-        string s2 = "";
-        binaryTreePaths(root->left);
-        binaryTreePaths(root->right);
-
+class Solution {
+    void binaryTreePaths(TreeNode * root, vector < string > &ret,
+			 string str) {
+	if (!root)
+	    return;
+	stringstream ss;
+	 ss << root->val;
+	string tmp;
+	 ss >> tmp;
+	if (!root->left && !root->right)
+	     ret.push_back("" == str ? tmp : str + "->" + tmp);
+	if (root->left) {
+	    if ("" != str)
+		binaryTreePaths(root->left, ret,
+				"" == str ? tmp : str + "->" + tmp);
+	    else
+		binaryTreePaths(root->left, ret, tmp);
+	}
+	if (root->right) {
+	    if ("" != str)
+		binaryTreePaths(root->right, ret,
+				"" == str ? tmp : str + "->" + tmp);
+	    else
+		binaryTreePaths(root->right, ret, tmp);
+	}
+	return;
+    }
+  public:
+    vector < string > binaryTreePaths(TreeNode * root) {
+	vector < string > ret;
+	string str;
+	binaryTreePaths(root, ret, str);
+	return ret;
     }
 };
