@@ -30,7 +30,6 @@ class Solution {
         int pos_x = end_x;
 	int pos_y = end_y;
         while(pos_x >= start_x && pos_y >= start_y) {
-            cout << pos_x << " " << pos_y << " " << endl;
             if (target == matrix[pos_y][pos_x])
                 return true;
             else if (start_x == end_x && start_y == end_y)
@@ -62,7 +61,7 @@ public:
 
 int main(int argc, char* argv[]) {
     Solution s;
-    vector<vector<int>> matrix = {{1, 2, 3, 4}, {6, 7, 8 ,20},{9,10,11, 21}, {16, 18, 20, 29}, {31, 32, 33 ,34}};
-    cout << s.searchMatrix(matrix, 5) << endl;
+    vector<vector<int>> matrix = {{1, 2, 3, 4}, {6, 7, 8 ,20},{9,10,11, 21}};
+    cout << s.searchMatrix(matrix, 9) << endl;
     return 0;
 }
