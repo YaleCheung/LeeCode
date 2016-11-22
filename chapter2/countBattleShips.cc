@@ -32,7 +32,7 @@ public:
             for(int j = 0; j < row; ++ j) {
                 if (board.at(i).at(j) == 'X') {
                     ret += 1;
-                    for(int k == j + 1; k < row; ++ k) {
+                    for(int k = j + 1; k < row; ++ k) {
                         if (board.at(i).at(k) != 'X')
                             break;
                         else
@@ -50,3 +50,4 @@ public:
         return ret;
     }
 };
+
