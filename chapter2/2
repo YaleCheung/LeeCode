@@ -1,0 +1,33 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  twoSum2.cc
+ *
+ *    Description:  
+ *
+ *        Version:  1.0
+ *        Created:  09/25/2016 20:59:32
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  YOUR NAME (), 
+ *   Organization:  
+ *
+ * =====================================================================================
+ */
+#include <map>
+#include <vector>
+#include <utility>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        multimap<int, unsigned int> hash;
+        int i = 0;
+        for(auto num : nums) {
+            hash.emplace(std::make_pair(num, i ++));
+        }
+        
+    }
+};
